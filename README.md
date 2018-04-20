@@ -11,4 +11,4 @@ Show the links of pages by using:
 it will show all the pages through html tags.
 
 The default element count of showing the pages' links is 5, 
-you can customize it by changing the value of '$element' in side the class.
+you can customize it by changing the value of '$element' inside the class.
