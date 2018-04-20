@@ -35,18 +35,19 @@ class paginator
     }
     function showPages(){
         if($this->total_page > 1){
-            echo "<a href='".preg_replace('/(&page=\d*)+/', '', $_SERVER['REQUEST_URI'])."&page=1'>First page</a> ";
+            $html = "<a href='".preg_replace('/(&page=\d*)+/', '', $_SERVER['REQUEST_URI'])."&page=1'>First page</a> ";
             $this_page = $this->page == 0 ? 1 : $this->page;
             $limit = $this->total_page < $this->elements ? $this->total_page : $this_page - ( $this_page % $this->elements - 1 ) + $this->elements - 1;
             for ($now = $this_page - ( floor($this_page % $this->elements) - 1); $now <= $limit; $now++) {
                 if($now == $this_page){
-                    echo " <a>".$now."</a>";
+                    $html .= " <a>".$now."</a>";
                 } 
                 else {
-                    echo " <a href='".preg_replace('/(&page=\d*)+/', '', $_SERVER['REQUEST_URI'])."&page=".$now."'>".$now."</a>";
+                    $html .= " <a href='".preg_replace('/(&page=\d*)+/', '', $_SERVER['REQUEST_URI'])."&page=".$now."'>".$now."</a>";
                 }
             }
-            echo " <a href='".preg_replace('/(&page=\d*)+/', '', $_SERVER['REQUEST_URI'])."&page=".$this->total_page."'>Last page</a>";
+            $html .= " <a href='".preg_replace('/(&page=\d*)+/', '', $_SERVER['REQUEST_URI'])."&page=".$this->total_page."'>Last page</a>";
         }
+        return $html;
     }
 }
